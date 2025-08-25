@@ -1,20 +1,23 @@
 pipeline{
     agent {
         docker{
-            image "cypress/browsers:latest" 
+            image "cypress/browsers:latest"
+            args '--entrypoint=' 
         }
     }
     stages{
-        stage('test stage1'){
+        stage('installer npm'){
             steps{
-                echo 'hello from jenkinsfile'
-                sh 'npx cypress run --browser chrome'
+                echo 'installer '
+                
+                sh 'npm ci'
             }
 
         }
-        stage('add-stage'){
+        stage('npm run '){
             steps{
-                echo 'hello from second stage'
+                echo 'npm run'
+                sh 'npx cypress run --browser edge'
             }
         }
     }
